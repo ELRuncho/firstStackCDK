@@ -15,4 +15,18 @@ class FirstStackStack(core.Stack):
             "myBucketId",
             versioned=True,
             encryption=_s3.BucketEncryption.KMS_MANAGED,
+            block_public_access=_s3.BlockPublicAccess.BLOCK_ALL
+        )
+
+        mybucket = _s3.Bucket(
+            self,
+            "outputbucket"
+        )
+
+        output_1 = core.CfnOutput(
+            self,
+            "output1",
+            value=mybucket.bucket_name,
+            description="my first output",
+            export_name="outputbucket1"
         )
