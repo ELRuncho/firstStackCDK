@@ -1,5 +1,6 @@
 from aws_cdk import (
     aws_s3 as _s3,
+    aws_iam as _iam,
     core
 )
 
@@ -22,7 +23,10 @@ class FirstStackStack(core.Stack):
             self,
             "outputbucket"
         )
-
+        _iam.Group(
+            self,
+            "gid"
+        )
         output_1 = core.CfnOutput(
             self,
             "output1",
